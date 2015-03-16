@@ -23,7 +23,9 @@ $.fn.layoutScout = function(options){
 			// element class names
 			var elementClass = $(this).attr('class');
 			// sibling elements
-			var sibling = $(this).siblings();
+			var sibling = $(this).siblings().filter(blocks);
+			//WordPress admin bar
+			var wordPressAdminBar = $(this).attr('id'); 
 			// random colour from the array of colours
 			var i = Math.floor(Math.random() * colours.length);
 			
@@ -46,6 +48,10 @@ $.fn.layoutScout = function(options){
 			} else if (elementClass === '.clearfix') {
 				// assign different colours
 				$(this).css('background-color', colours[different]);
+				// if the div is the wp admin bar
+			} else if (wordPressAdminBar === 'wpadminbar') {
+				// apply black background
+				$(this).css('background-color', 'black');
 				// otherwise, if they don't share a class...
 			} else {
 				// give them different colours
